@@ -22,7 +22,7 @@ public class Dificultad
             set { _IdDificultad=value; }
         }
 
-    public string nombre 
+    public string Nombre 
         {
             get { return _Nombre; }
             set { _Nombre=value; }

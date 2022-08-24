@@ -35,6 +35,13 @@ public class Respuesta
             get { return _IdPregunta; }
             set { _IdPregunta=value; }
         }
+
+    
+     public int IdRespuesta 
+        {
+            get { return _IdRespuesta; }
+            set { _IdRespuesta=value; }
+        }
     
     
     public string Foto 

@@ -28,7 +28,7 @@ public class Categoria
             set { _IdCategoria=value; }
         }
     
-    public string nombre 
+    public string Nombre 
         {
             get { return _Nombre; }
             set { _Nombre=value; }
@@ -39,5 +39,4 @@ public class Categoria
             get { return _Foto; }
             set { _Foto=value; }
         }
-
 }

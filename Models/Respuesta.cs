@@ -36,23 +36,6 @@ public class Respuesta
             set { _IdPregunta=value; }
         }
     
-    public int IdCategoria 
-        {
-            get { return _IdCategoria; }
-            set { _IdCategoria=value; }
-        }
-    
-    public int IdDificultad 
-        {
-            get { return _IdDificultad; }
-            set { _IdDificultad=value; }
-        }
-    
-    public string Enunciado 
-        {
-            get { return _Enunciado; }
-            set { _Enunciado=value; }
-        }
     
     public string Foto 
         {
@@ -60,4 +43,22 @@ public class Respuesta
             set { _Foto=value; }
         }
 
+        public int Opcion
+        {
+            get { return _Opcion; }
+            set { _Opcion=value; }
+        }
+
+
+         public string Contenido
+        {
+            get { return _Contenido; }
+            set { _Contenido=value; }
+        }
+
+          public bool Correcta
+        {
+            get { return _Correcta; }
+            set { _Correcta=value; }
+        }
 }

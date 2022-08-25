@@ -2,21 +2,25 @@ using System.Collections.Generic;
 using System;
 using System.Data.SqlClient;
 using Dapper;
+using System.Data;
+using System.Dynamic;
+using Microsoft.VisualBasic.CompilerServices;
 
-namespace Tp_PreguntadOrt.Models
+namespace Tp_PreguntadOrt.Models{
     public static class BD
     {
 
-        private static string _connectionString = 
-        @"Server=DESKTOP-885T6PK\SQLEXPRESS;DataBase=Qatar2022;Trusted_Connection=True";
+        private static string _connectionString =  @"Server=DESKTOP-885T6PK\SQLEXPRESS;DataBase=Qatar2022;Trusted_Connection=True";
+       
 
-        public static void AgregarEquipo(Equipo Eq)
+        public static List<Juego> ListarEquipos()
         {
-            string sql = "INSERT INTO Equipos VALUES (@pNombre, @pEscudo, @pCamiseta, @pContinente, @pCopasGanadas)";
-            using(SqlConnection db = new SqlConnection(_connectionString))
-            {
-                db.Execute(sql, new { pNombre = Eq.Nombre, pEscudo = Eq.Escudo, pCamiseta = Eq.Camiseta, pContinente = Eq.Continente, pCopasGanadas = Eq.CopasGanadas});
+            List<Equipo> lista = new List<Equipo>();
+            string sql = "SELECT * FROM Equipos";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                lista = db.Query<Equipo>(sql).ToList();
             }
+            return lista;
         }
     }
 

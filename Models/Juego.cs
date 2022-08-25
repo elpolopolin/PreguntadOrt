@@ -2,9 +2,56 @@ using System;
 namespace Tp_PreguntadOrt;
 public class Juego
 {
-    string _username
-    int _puntajeActual
-    int _cantidadPreguntasCorrectas
-    List<Pregunta> _preguntas
-    List<Respuesta> _respuestas
+    private string _username;
+    private int _puntajeActual;
+    private int _cantidadPreguntasCorrectas;
+    private List<Pregunta> _preguntas;
+    private List<Respuesta> _respuestas;
+
+    public Juego(string username, int puntajeActual, int cantidadPreguntasCorrectas, List <Pregunta> preguntas, List <Respuesta> respuestas )
+    {
+        _username=username;
+        _puntajeActual=puntajeActual;
+        _cantidadPreguntasCorrectas=cantidadPreguntasCorrectas;
+        _preguntas=preguntas;
+        _respuestas=respuestas;
+    }
+
+     public Juego ()
+    {
+        _username="";
+        _puntajeActual=0;
+        _cantidadPreguntasCorrectas=0;
+    }
+
+    public string username 
+        {
+            get { return _username; }
+            set { _username=value; }
+        }
+    
+    public int puntajeActual 
+        {
+            get { return _puntajeActual; }
+            set { _puntajeActual=value; }
+        }
+    
+    public int cantidadPreguntasCorrectas 
+        {
+            get { return _cantidadPreguntasCorrectas; }
+            set { _cantidadPreguntasCorrectas=value; }
+        }
+
+    
+    public List <Pregunta> preguntas
+    {
+        get { return _preguntas; }
+        set { _preguntas=value; }
+    }
+
+    public List <Respuesta> respuestas
+    {
+        get { return _respuestas; }
+        set { _respuestas=value; }
+    }
 }

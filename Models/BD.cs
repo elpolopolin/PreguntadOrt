@@ -9,19 +9,31 @@ using Microsoft.VisualBasic.CompilerServices;
 namespace Tp_PreguntadOrt.Models{
     public static class BD
     {
-
-        private static string _connectionString =  @"Server=DESKTOP-885T6PK\SQLEXPRESS;DataBase=Qatar2022;Trusted_Connection=True";
+    
+        private static string server = Dns.GetHostName();
+        private static string _connectionString =  @$"Server={server};DataBase=PreguntadOrt;Trusted_Connection=True";
        
-
-        public static List<Juego> ListarEquipos()
+           public static List<Dificultad> ObtenerDificultades()
         {
-            List<Equipo> lista = new List<Equipo>();
-            string sql = "SELECT * FROM Equipos";
+            List<Dificultad> listaDificultades = new List<Dificultad>();
+            string sql = "SELECT * FROM Dificultades";
             using(SqlConnection db = new SqlConnection(_connectionString)){
-                lista = db.Query<Equipo>(sql).ToList();
+                listaDificultades = db.Query<Dificultad>(sql).ToList();
             }
-            return lista;
+            return listaDificultades;
         }
+
+
+        public static List<Categoria> ObtenerCategorias()
+        {
+            List<Categoria> listaCategorias = new List<Categoria>();
+            string sql = "SELECT * FROM Categorias";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                listaCategorias = db.Query<Categoria>(sql).ToList();
+            }
+            return listaCategorias;
+        }
+
     }
 
         

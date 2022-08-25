@@ -34,23 +34,41 @@ namespace Tp_PreguntadOrt.Models{
             return listaCategorias;
         }
 
-           public static List<Pregunta> ObtenerPreguntas()
+           public static List<Pregunta> ObtenerPreguntas(int idDificultad, int idCategoria)
         {
             List<Pregunta> listaPreguntas = new List<Pregunta>();
-            string sql = "SELECT * FROM Preguntas";
+            string sql = "SELECT * FROM Preguntas WHERE idCategoria = @pidCategoria AND idCategoria = @pidCategoria";
+            if (idDificultad == -1  && idCategoria == -1)
+            {
+                sql = "SELECT * FROM Preguntas";
+            }
+            if (idDificultad == -1)
+            {
+                sql = "SELECT * FROM Preguntas WHERE idCategoria = @pidCategoria";
+            }
+            if (idCategoria == -1)
+            {
+            sql = "SELECT * FROM Preguntas WHERE idDificultad = @pidDificultad";
+            }
             using(SqlConnection db = new SqlConnection(_connectionString)){
-                listaPreguntas = db.Query<Pregunta>(sql).ToList();
+                listaPreguntas = db.Query<Pregunta>(sql, new{pidCategoria = idCategoria, pidDificultad=idDificultad}).ToList();
+
             }
             return listaPreguntas;
         }
 
-          public static List<Respuesta> ObtenerRespuestas()
+          public static List<Respuesta> ObtenerRespuestas(List<Pregunta>preguntas, int idRespuesta)
         {
             List<Respuesta> listaRespuestas = new List<Respuesta>();
-            string sql = "SELECT * FROM Respuestas";
-            using(SqlConnection db = new SqlConnection(_connectionString)){
-                listaRespuestas = db.Query<Respuesta>(sql).ToList();
+            foreach(Pregunta preg in preguntas)
+            {
+                 string sql = "SELECT * FROM Preguntas WHERE idRespuesta=@pidRespuesta";
+                  using(SqlConnection db = new SqlConnection(_connectionString)){
+                listaRespuestas.AddRange(db.Query<Respuesta>(sql, new{pidPregunta = preg.IdPregunta}));
+                  }
+
             }
+
             return listaRespuestas;
         }
 

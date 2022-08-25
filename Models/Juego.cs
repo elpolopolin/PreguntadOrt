@@ -17,11 +17,15 @@ public class Juego
         _respuestas=respuestas;
     }
 
-     public Juego ()
+     public static void InicializarJuego()
     {
         _username="";
         _puntajeActual=0;
         _cantidadPreguntasCorrectas=0;
+        
+    }
+
+    public static void ObtenerCategorias {
         
     }
 
@@ -55,4 +59,7 @@ public class Juego
         get { return _respuestas; }
         set { _respuestas=value; }
     }
+
+
+
 }

@@ -10,8 +10,8 @@ namespace Tp_PreguntadOrt.Models{
     public static class BD
     {
     
-        private static string server = Dns.GetHostName();
-        private static string _connectionString =  @$"Server={server};DataBase=PreguntadOrt;Trusted_Connection=True";
+        
+        private static string _connectionString =  @$"Server=127.0.0.1;DataBase=PreguntadOrt;Trusted_Connection=True";
        
            public static List<Dificultad> ObtenerDificultades()
         {
@@ -34,6 +34,28 @@ namespace Tp_PreguntadOrt.Models{
             return listaCategorias;
         }
 
+           public static List<Pregunta> ObtenerPreguntas()
+        {
+            List<Pregunta> listaPreguntas = new List<Pregunta>();
+            string sql = "SELECT * FROM Preguntas";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                listaPreguntas = db.Query<Pregunta>(sql).ToList();
+            }
+            return listaPreguntas;
+        }
+
+          public static List<Respuesta> ObtenerRespuestas()
+        {
+            List<Respuesta> listaRespuestas = new List<Respuesta>();
+            string sql = "SELECT * FROM Respuestas";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                listaRespuestas = db.Query<Respuesta>(sql).ToList();
+            }
+            return listaRespuestas;
+        }
+
     }
+}
+
 
         

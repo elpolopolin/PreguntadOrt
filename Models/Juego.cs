@@ -22,6 +22,7 @@ public class Juego
         _username="";
         _puntajeActual=0;
         _cantidadPreguntasCorrectas=0;
+        
     }
 
     public string username 

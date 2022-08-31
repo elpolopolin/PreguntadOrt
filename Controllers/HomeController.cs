@@ -26,13 +26,16 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        Viewbag.Lista = BD.ObtenerPreguntas();
         return View();
     }
 
     public IActionResult ConfigurarJuego()
     {
-        
+        Viewbag.Categoria = BD.ObtenerCategorias();
+        Viewbag.Dificultad = BD.ObtenerDificultades();
         return View();
+        
 
     }
 

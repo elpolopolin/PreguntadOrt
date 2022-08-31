@@ -25,8 +25,18 @@ public class Juego
         
     }
 
-    public static void ObtenerCategorias {
-        
+    public static void ObtenerCategorias()
+    {
+        List<Categoria> listaCategorias = new List<Categoria>(ObtenerCategorias());
+        return listaCategorias;
+       //"va a la base(BD) de datos y trae las categorias de las listas y lo asigna en categorias (lo mismo con preguntas)"
+    }
+
+    public static void ObtenerDificultades()
+    {
+        List<Dificultad> listaDificultades = new List<Dificultad>(ObtenerDificultades());
+        return listaDificultades;
+       //"va a la base(BD) de datos y trae las Dificultades de las listas y lo asigna en Dificultades (lo mismo con preguntas)"
     }
 
     public string username 

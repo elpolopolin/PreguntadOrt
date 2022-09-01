@@ -15,6 +15,7 @@ namespace Tp_PreguntadOrt.Models{
        
            public static List<Dificultad> ObtenerDificultades()
         {
+
             List<Dificultad> listaDificultades = new List<Dificultad>();
             string sql = "SELECT * FROM Dificultades";
             using(SqlConnection db = new SqlConnection(_connectionString)){
@@ -63,8 +64,9 @@ namespace Tp_PreguntadOrt.Models{
             foreach(Pregunta preg in preguntas)
             {
                  string sql = "SELECT * FROM Preguntas WHERE idRespuesta=@pidRespuesta";
-                  using(SqlConnection db = new SqlConnection(_connectionString)){
-                listaRespuestas.AddRange(db.Query<Respuesta>(sql, new{pidPregunta = preg.IdPregunta}));
+                  using(SqlConnection db = new SqlConnection(_connectionString))
+                  {
+                    listaRespuestas.AddRange(db.Query<Respuesta>(sql, new{pidPregunta = preg.IdPregunta}));
                   }
 
             }

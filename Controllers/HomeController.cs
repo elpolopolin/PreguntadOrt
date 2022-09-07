@@ -28,7 +28,6 @@ public class HomeController : Controller
     //!
     public IActionResult Index()
     {
-        //ViewBag.Lista = BD.ObtenerPreguntas();
         return View();
     }
 
@@ -56,10 +55,18 @@ pregunta, invoca a ObtenerProximasRespuestas de la clase Juego guardando estos d
 en ViewBag y retorna la view Juego.
 */
 
-    /*public IActionResult Jugar()
+    public IActionResult Jugar()
     {
-        ViewBag.PreguntaActual = 
+        ViewBag.preguntas=Juego.ObtenerProximaPregunta();
+        ViewBag.respuestas=Juego.ObtenerProximaRespuesta();
+
+        if(ViewBag.preguntas.Count()<=0)
+        {
+            return View("FIN");
+        }
+
+        else
     }
- */
+ 
 
 }

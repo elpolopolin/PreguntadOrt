@@ -58,12 +58,12 @@ namespace Tp_PreguntadOrt.Models{
             return listaPreguntas;
         }
 
-          public static List<Respuesta> ObtenerRespuestas(List<Pregunta>preguntas, int idRespuesta)
+          public static List<Respuesta> ObtenerRespuestas(List<Pregunta>preguntas)
         {
             List<Respuesta> listaRespuestas = new List<Respuesta>();
             foreach(Pregunta preg in preguntas)
             {
-                 string sql = "SELECT * FROM Preguntas WHERE idRespuesta=@pidRespuesta";
+                 string sql = "SELECT * FROM Respuestas WHERE idPregunta=@pidPregunta";
                   using(SqlConnection db = new SqlConnection(_connectionString))
                   {
                     listaRespuestas.AddRange(db.Query<Respuesta>(sql, new{pidPregunta = preg.IdPregunta}));

@@ -13,6 +13,7 @@ public class Juego
     private static List <Dificultad>_dificultad=new List<Dificultad>();
 
 
+    private static string _connectionString =  @$"Server=127.0.0.1;DataBase=PreguntadOrt;Trusted_Connection=True";
 
     public static string username 
         {
@@ -55,7 +56,7 @@ public class Juego
         
     }
 
-    public static List<Dificultad> ObtenerDificultad()
+    public static List<Dificultad> ObtenerDificultades()
     {
         _dificultad= BD.ObtenerDificultades();
         return _dificultad;
@@ -70,76 +71,62 @@ public class Juego
 
 
 
-    public static void CargarPartida(string username, int dificultad, int categoria, int idRespuesta)
+    public static void CargarPartida(string username, int dificultad, int categoria)
     {
         _username=username;
         _preguntas = BD.ObtenerPreguntas(categoria, dificultad);
         _respuestas = BD.ObtenerRespuestas(_preguntas);
     }
 
+    public static List<Categoria> ObtenerCategorias(){
+        return BD.ObtenerCategorias();
+       //"va a la base(BD) de datos y trae las categorias de las listas y lo asigna en categorias (lo mismo con preguntas)"
+    }
+
+
+    //ObtenerProximaPregunta
+    public static Pregunta ObtenerProximaPregunta()
+    {
+        var random=new Random();
+        int pos=random.Next(_preguntas.Count);
+        return pos[_preguntas];
+    }
+
+    //ObtenerProximasRespuestas
 
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-        foreach(Respuesta resp in _respuestas){
+        bool Correcta = false;
+
+       foreach(Respuesta resp in _respuestas){
             if(resp.IdRespuesta == idRespuesta){
                 if (resp.Correcta == true){
 
                     _puntajeActual += 5;
                     _cantidadPreguntasCorrectas++;
 
-                    return true;
+                    return Correcta;
                 }
             }
         }
-
+        
         foreach(Pregunta preg in _preguntas){
             if(preg.IdPregunta == idPregunta){
                 int indicePreguntaContestada = _preguntas.IndexOf(preg);
                 _preguntas.RemoveAt(indicePreguntaContestada);
             }
         }
+        return Correcta;
+    }
+    
     }
 
-   public  static string  ObtenerProximaPregunta()
-   {
-        if (BD.ObtenerCategorias )
-        {
+   
 
-        }
-
-   }
-
-    /*
-    public static List<Pregunta> ObtenerPreguntas(int IdDificultad, int IdCategoria)
-    {
-        using(SqlConnection db = new SqlConnection(_connectionString))
-        {
-            string SQL = "SELECT * FROM Preguntas";
-        string connector = " WHERE ";
-
-        if(idCategoria != -1)
-        {
-            SQL = SQL + connector + "IdCategoria = @pIdCategoria";
-            connector = " AND ";
-        }
-        if (idDificultad != -1)
-        {
-            SQL = SQL + connector + "IdDificultad = @pIdDificultad";
-        }
-        SQL = SQL + " order by NEWID() ";
-        _ListaPreguntas = db.Query<pregunta>(SQL, new{pIdCategoria = IdCategoria, pIdDificultad = IdDificultad}).ToList;
-
-        }
-        return _ListaPreguntas;
-        
-    }
-    */
-
-    public static List<Categoria> ObtenerCategorias(){
-        return BD.ObtenerCategorias();
-       //"va a la base(BD) de datos y trae las categorias de las listas y lo asigna en categorias (lo mismo con preguntas)"
-    }
+   
+ 
     
 
 }
-}
+
+

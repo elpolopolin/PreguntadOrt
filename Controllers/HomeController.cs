@@ -24,17 +24,19 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
+
+    //!
     public IActionResult Index()
     {
-        ViewBag.Lista = BD.ObtenerPreguntas();
+        //ViewBag.Lista = BD.ObtenerPreguntas();
         return View();
     }
 
     public IActionResult ConfigurarJuego()
     {
         ViewBag.Juego.InicializarJuego();
-        ViewBag.Categoria = BD.ObtenerCategorias();
-        ViewBag.Dificultad = BD.ObtenerDificultades();
+        ViewBag.Categoria = Juego.ObtenerCategorias();
+        ViewBag.Dificultad = Juego.ObtenerDificultades();
         return View();
         
 
@@ -45,5 +47,19 @@ public class HomeController : Controller
         Juego.CargarPartida(Username,IdCategoria,IdDificultad);
         return RedirectToAction("Jugar","Home",new{Username=Username, IdDificultad=IdDificultad, IdCategoria=IdCategoria});
     }
+
+    /*jugar
+    Carga en ViewBag todo lo necesario para mostrar la pregunta
+actual con sus respectivas respuestas (que proviene del método ObtenerProximaPregunta.
+Si ya no hay más preguntas disponibles, retorna la view Fin. Si el método retorna una
+pregunta, invoca a ObtenerProximasRespuestas de la clase Juego guardando estos datos
+en ViewBag y retorna la view Juego.
+*/
+
+    public IActionResult Jugar()
+    {
+        ViewBag.PreguntaActual = 
+    }
+
 
 }

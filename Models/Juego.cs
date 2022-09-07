@@ -7,18 +7,13 @@ public class Juego
     private static string _username;
     private static int _puntajeActual;
     private static int _cantidadPreguntasCorrectas;
-    private static List<Pregunta> _preguntas;
-    private static List<Respuesta> _respuestas;
+    private static List <Pregunta>_preguntas=new List<Pregunta>();
+    private static List <Respuesta>_respuestas=new List<Respuesta>();
+    private static List <Categoria>_categorias=new List<Categoria>();
+    private static List <Dificultad>_dificultad=new List<Dificultad>();
 
-    public Juego(string username, int puntajeActual, int cantidadPreguntasCorrectas, List <Pregunta> preguntas, List <Respuesta> respuestas )
-    {
-        _username=username;
-        _puntajeActual=puntajeActual;
-        _cantidadPreguntasCorrectas=cantidadPreguntasCorrectas;
-        _preguntas=preguntas;
-        _respuestas=respuestas;
-    }
-    
+
+
     public static string username 
         {
             get { return _username; }
@@ -62,20 +57,24 @@ public class Juego
 
     public static List<Dificultad> ObtenerDificultad()
     {
-        return BD.ObtenerDificultades();
+        _dificultad= BD.ObtenerDificultades();
+        return _dificultad;
+        
     }
 
      public static List<Categoria> ObtenerCategoria()
     {
-        return BD.ObtenerCategorias();
+        _categorias= BD.ObtenerCategorias();
+        return _categorias;
     }
 
 
 
     public static void CargarPartida(string username, int dificultad, int categoria, int idRespuesta)
     {
-        ViewBag._preguntas = BD.ObtenerPreguntas(dificultad, categoria);
-        ViewBag._respuestas = BD.ObtenerRespuestas(_preguntas, idRespuesta);
+        _username=username;
+        _preguntas = BD.ObtenerPreguntas(categoria, dificultad);
+        _respuestas = BD.ObtenerRespuestas(_preguntas);
     }
 
 
@@ -100,6 +99,15 @@ public class Juego
             }
         }
     }
+
+   public  static string  ObtenerProximaPregunta()
+   {
+        if (BD.ObtenerCategorias )
+        {
+
+        }
+
+   }
 
     /*
     public static List<Pregunta> ObtenerPreguntas(int IdDificultad, int IdCategoria)

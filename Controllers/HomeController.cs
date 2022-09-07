@@ -40,4 +40,10 @@ public class HomeController : Controller
 
     }
 
+    public IActionResult Comenzar(string Username, int IdDificultad, int IdCategoria)
+    {
+        Juego.CargarPartida(Username,IdCategoria,IdDificultad);
+        return RedirectToAction("Jugar","Home",new{Username=Username, IdDificultad=IdDificultad, IdCategoria=IdCategoria});
+    }
+
 }

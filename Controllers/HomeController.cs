@@ -56,10 +56,10 @@ pregunta, invoca a ObtenerProximasRespuestas de la clase Juego guardando estos d
 en ViewBag y retorna la view Juego.
 */
 
-    public IActionResult Jugar()
+    /*public IActionResult Jugar()
     {
         ViewBag.PreguntaActual = 
     }
-
+ */
 
 }

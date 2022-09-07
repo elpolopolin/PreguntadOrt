@@ -80,7 +80,6 @@ public class Juego
 
     public static List<Categoria> ObtenerCategorias(){
         return BD.ObtenerCategorias();
-       //"va a la base(BD) de datos y trae las categorias de las listas y lo asigna en categorias (lo mismo con preguntas)"
     }
 
 

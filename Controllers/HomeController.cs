@@ -58,14 +58,14 @@ en ViewBag y retorna la view Juego.
     public IActionResult Jugar()
     {
         ViewBag.preguntas=Juego.ObtenerProximaPregunta();
-        ViewBag.respuestas=Juego.ObtenerProximaRespuesta();
+       // ViewBag.respuestas=Juego.ObtenerProximaRespuesta();
 
         if(ViewBag.preguntas.Count()<=0)
         {
             return View("FIN");
         }
 
-        else
+        return View();
     }
  
 

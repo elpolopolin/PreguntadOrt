@@ -55,7 +55,7 @@ pregunta, invoca a ObtenerProximasRespuestas de la clase Juego guardando estos d
 en ViewBag y retorna la view Juego.
 */
 
-    public IActionResult Jugar()
+public IActionResult Jugar()
     {
         ViewBag.preguntas=Juego.ObtenerProximaPregunta();
         ViewBag.respuestas=Juego.ObtenerProximaRespuesta();
@@ -66,7 +66,24 @@ en ViewBag y retorna la view Juego.
         }
 
         else
+        {
+            return View();
+        }
     }
+
+    public IActionResult VerificarRespuesta(int idPregunta,int idRespuesta)
+    {
+        if(Juego.VerificarRespuesta(idPregunta,idRespuesta)==true)
+        {
+            ViewBag.Mensaje="Respuesta correcta";
+        }
+        else
+        {
+            ViewBag.Mensaje="Respuesta incorrecta";
+        }
+        return View("Respuesta");
+    }
+ 
  
 
 }

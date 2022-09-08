@@ -33,7 +33,7 @@ public class HomeController : Controller
 
     public IActionResult ConfigurarJuego()
     {
-        ViewBag.Juego.InicializarJuego();
+        Juego.InicializarJuego();
         ViewBag.Categoria = Juego.ObtenerCategorias();
         ViewBag.Dificultad = Juego.ObtenerDificultades();
         return View();

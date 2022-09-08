@@ -96,7 +96,7 @@ public class Juego
     {
         if(_preguntas.Count()>0)
         {
-            return BD.ObtenerRespuestas(preguntas, idPregunta);
+            return BD.ObtenerRespuestas(preguntas);
         }
 
         else{

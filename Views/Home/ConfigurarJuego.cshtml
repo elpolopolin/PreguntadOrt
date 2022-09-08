@@ -1,0 +1,42 @@
+
+
+
+      
+    
+        <form action='@Url.Action("Comenzar","Home")' method="get" enctype="multipart/form-data">
+
+        <h1 class="text-center bg-warning">CATEGORIA</h1>
+            @foreach (Categoria item in @ViewBag.Categoria)
+            {
+                <ul class="list-group">
+                    
+                    <li class="list-group-item border-warning">
+                <h2>
+                    <input type="radio"  class="form-check-input" name="IdCategoria" value="@item.IdCategoria" required />
+                    <label  class="form-check-label"  >@item.Nombre</label>
+                </h2>
+                </li>
+
+                </ul>
+            }
+
+            <h1 class="text-center bg-dark text-light">DIFICULTAD</h1>
+
+            @foreach (Dificultad item in @ViewBag.Dificultad)
+            {
+                <ul class="list-group">
+                    
+                    <li class="list-group-item border-warning">
+                <h2>
+                    <input type="radio"  class="form-check-input" name="IdDificultad" value="@item.IdDificultad" required />
+                    <label  class="form-check-label"  >@item.Nombre</label>
+                </h2>
+                </li>
+
+                </ul>
+            }
+    
+        <button type="submit" class="btn-primary">Comenzar</button>
+        </form>
+ 
+</div>

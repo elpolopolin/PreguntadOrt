@@ -57,8 +57,10 @@ en ViewBag y retorna la view Juego.
 
 public IActionResult Jugar()
     {
-        ViewBag.preguntas=Juego.ObtenerProximaPregunta();
-        ViewBag.respuestas=Juego.ObtenerProximaRespuesta();
+        Pregunta preguntas = new Pregunta();
+        preguntas=Juego.ObtenerProximaPregunta();
+        ViewBag.respuestas=Juego.ObtenerProximaRespuesta(preguntas.IdPregunta);
+        ViewBag.preguntas = preguntas;
 
         if(ViewBag.preguntas.Count()<=0)
         {

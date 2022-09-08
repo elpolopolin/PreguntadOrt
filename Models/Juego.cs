@@ -92,6 +92,18 @@ public class Juego
     }
 
     //ObtenerProximasRespuestas
+    public static List<Respuesta> ObtenerProximaRespuesta(int idPregunta)
+    {
+        if(_preguntas.Count()>0)
+        {
+            return BD.ObtenerRespuestas(preguntas, idPregunta);
+        }
+
+        else{
+            return null;
+        }
+
+    }
 
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {

@@ -65,8 +65,9 @@ public IActionResult Jugar()
             return View("FIN");
         }
 
-        return View();
-
+        
+            return View();
+        
     }
 
 

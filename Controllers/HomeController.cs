@@ -65,15 +65,10 @@ public IActionResult Jugar()
             return View("FIN");
         }
 
-<<<<<<< HEAD
         return View();
-=======
-        else
-        {
-            return View();
-        }
->>>>>>> e0fe17df6fcf061f208d15a6577d9a7069733147
+
     }
+
 
     public IActionResult VerificarRespuesta(int idPregunta,int idRespuesta)
     {

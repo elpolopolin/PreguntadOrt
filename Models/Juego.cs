@@ -88,7 +88,7 @@ public class Juego
     {
         var random=new Random();
         int pos=random.Next(_preguntas.Count);
-        return pos[_preguntas];
+        return _preguntas[pos];
     }
 
     //ObtenerProximasRespuestas

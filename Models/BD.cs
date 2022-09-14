@@ -58,7 +58,7 @@ namespace Tp_PreguntadOrt.Models{
             return listaPreguntas;
         }
 
-          public static List<Respuesta> ObtenerRespuestas(List<Pregunta>preguntas)
+          public static List<Respuesta> ObtenerRespuestas(List<Pregunta> preguntas)
         {
             List<Respuesta> listaRespuestas = new List<Respuesta>();
             foreach(Pregunta preg in preguntas)

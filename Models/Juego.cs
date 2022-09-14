@@ -86,23 +86,28 @@ public class Juego
     //ObtenerProximaPregunta
     public static Pregunta ObtenerProximaPregunta()
     {
-        var random=new Random();
-        int pos=random.Next(_preguntas.Count);
-        return _preguntas[pos];
-    }
-
-    //ObtenerProximasRespuestas
-    public static List<Respuesta> ObtenerProximaRespuesta(int idPregunta)
-    {
-        if(_preguntas.Count()>0)
+        if(_preguntas.Count != null)
         {
-            return BD.ObtenerRespuestas(preguntas);
+            return _preguntas[0];
         }
-
-        else{
+        else
+        {
             return null;
         }
 
+    }
+
+    //ObtenerProximasRespuestas
+    public static List<Respuesta> ObtenerProximaRespuesta(List <Pregunta>_preguntas)
+    {
+        if(_preguntas.Count()>0)
+        {
+            return BD.ObtenerRespuestas(_preguntas);
+        }
+        else{
+             return null;
+
+        }
     }
 
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)

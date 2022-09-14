@@ -5,6 +5,7 @@
     
         <form action='@Url.Action("Comenzar","Home")' method="get" enctype="multipart/form-data">
 
+        <input type="text" name="Username" value="" required/>
         <h1 class="text-center bg-warning">CATEGORIA</h1>
             @foreach (Categoria item in @ViewBag.Categoria)
             {

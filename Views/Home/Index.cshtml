@@ -7,11 +7,23 @@
   
   <body>
 
-    <div class="text-center">
+    <div class="text-center bg-dark">
     
-    <img src="imagenes/frodoyantoan.png" style="height:60%; width:40%;">
-    </div>    
+    <img src="imagenes/frodoyantoan.png" class="bg-dark" style="height:60%; width:40%;">
+  
+  
 
+     <form action='@Url.Action("historia","Home")' method="get" enctype="multipart/form-data">
+      <button type="submit" class=" btn btn-success btn-lg m-5">Historia</button>
+      </form>
+      
+
+      <form action='@Url.Action("configurarJuego","Home")' method="get" enctype="multipart/form-data">
+      <button type="submit" class=" btn btn-danger btn-lg m-5">Comenzar</button>
+      </form>
+      
+
+      </div>
   </body>
 
 

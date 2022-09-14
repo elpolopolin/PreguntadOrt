@@ -31,6 +31,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult historia()
+    {
+        return View();
+    }
+
     public IActionResult ConfigurarJuego()
     {
         Juego.InicializarJuego();
@@ -43,8 +48,9 @@ public class HomeController : Controller
 
     public IActionResult Comenzar(string Username, int IdDificultad, int IdCategoria)
     {
-        Juego.CargarPartida(Username,IdCategoria,IdDificultad);
-        return RedirectToAction("Jugar","Home",new{Username=Username, IdDificultad=IdDificultad, IdCategoria=IdCategoria});
+        Juego.CargarPartida(Username,IdDificultad,IdCategoria);
+        //return RedirectToAction("Jugar","Home",new{Username=Username, IdDificultad=IdDificultad, IdCategoria=IdCategoria});
+        return RedirectToAction("Jugar","Home");
     }
 
     /*jugar
@@ -55,18 +61,19 @@ pregunta, invoca a ObtenerProximasRespuestas de la clase Juego guardando estos d
 en ViewBag y retorna la view Juego.
 */
 
+//public IActionResult Jugar(List <Pregunta> _preguntas)
 public IActionResult Jugar()
     {
         ViewBag.preguntas=Juego.ObtenerProximaPregunta();
-       // ViewBag.respuestas=Juego.ObtenerProximaRespuesta();
+       ViewBag.respuestas=Juego.ObtenerProximaRespuesta(ViewBag.preguntas);
 
-        if(ViewBag.preguntas.Count()<=0)
+        if(ViewBag.preguntas != null)
         {
             return View("FIN");
         }
 
         
-            return View();
+            return View("Jugar");
         
     }
 

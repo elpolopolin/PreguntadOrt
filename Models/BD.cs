@@ -81,7 +81,7 @@ namespace Tp_PreguntadOrt.Models{
                   }
 
             }
-            Console.Writeline(PuntajeActual);
+       
             return listaRespuestas;
         }
 

@@ -147,6 +147,7 @@ public class Juego
        foreach(Respuesta resp in _respuestas){
             if(resp.IdRespuesta == IdRespuesta){
                 if (resp.Correcta == true){
+                     _puntajeActual += 9;
                     switch(IdDificultad){
 
                         case 1:
@@ -167,7 +168,7 @@ public class Juego
             }
         }
 
-        Console.Writeline(PuntajeActual);
+        
         
         return false;
     }

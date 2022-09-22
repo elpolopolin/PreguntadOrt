@@ -3,27 +3,33 @@
 }
 
     <title>PreguntadOrt</title>
-
-  
   <body>
 
-    <div class="text-center bg-dark">
+   
+   
+  
+<center>
+      <ol class="list-group list-group ">
+ <img src="FRODO.jpg"  class="" >
+
+  <button type="button" class="btn btn-outline-light bg-dark"><a href="@Url.Action("historia","Home")"><h5> Leer Historia</h5></a></button>
+  <button type="button" class="btn btn-outline-light bg-dark"><a href="@Url.Action("ConfigurarJuego","Home")"><h5>Comenzar Juego</h5></a></button></li>
+  <button type="button" class="btn btn-outline-light bg-dark"><a href="@Url.Action("tutorial","Home")"><img src="tutorial.png" style="height:60%; width:70%;" alt=""></a></button>
+
+</ol>
+  </center>
+
+
+
+
+      
+  
+</div>
+    </div>
     
-    <img src="imagenes/frodoyantoan.png" class="bg-dark" style="height:60%; width:40%;">
-  
-  
 
-     <form action='@Url.Action("historia","Home")' method="get" enctype="multipart/form-data">
-      <button type="submit" class=" btn btn-success btn-lg m-5">Historia</button>
-      </form>
+
       
-
-      <form action='@Url.Action("configurarJuego","Home")' method="get" enctype="multipart/form-data">
-      <button type="submit" class=" btn btn-danger btn-lg m-5">Comenzar</button>
-      </form>
-      
-
-      </div>
   </body>
 
 

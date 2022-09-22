@@ -21,7 +21,7 @@ public class Juego
             set { _username=value; }
         }
     
-    public static int puntajeActual 
+    public static int PuntajeActual 
         {
             get { return _puntajeActual; }
             set { _puntajeActual=value; }
@@ -69,13 +69,26 @@ public class Juego
         return _categorias;
     }
 
+ 
 
 
     public static void CargarPartida(string username, int dificultad, int categoria)
     {
-        _username=username;
+       // Random random = new Random();
+       // int rnd;
+
         _preguntas = BD.ObtenerPreguntas(categoria, dificultad);
+        //int cant = _preguntas.Count();
+
+       /* for (int i = 0; i<cant; i++){
+            rnd = random.Next(0,cant);
+            Pregunta temporal = _preguntas[rnd];
+            _preguntas[rnd] = _preguntas[i];
+            _preguntas[i] = temporal;
+        }
+        */
         _respuestas = BD.ObtenerRespuestas(_preguntas);
+        _username = username;
     }
 
     public static List<Categoria> ObtenerCategorias(){
@@ -86,7 +99,7 @@ public class Juego
     //ObtenerProximaPregunta
     public static Pregunta ObtenerProximaPregunta()
     {
-        if(_preguntas.Count != null)
+        if(_preguntas.Count() > 0)
         {
             return _preguntas[0];
         }
@@ -97,52 +110,76 @@ public class Juego
 
     }
 
-    //ObtenerProximasRespuestas
-    public static List<Respuesta> ObtenerProximaRespuesta(List <Pregunta>_preguntas)
+     public static string UserNameView()
     {
-        if(_preguntas.Count()>0)
-        {
-            return BD.ObtenerRespuestas(_preguntas);
-        }
-        else{
-             return null;
-
-        }
+        return username;
     }
 
-    public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
+    
+
+    //ObtenerProximasRespuestas
+    public static List<Respuesta> ObtenerProximaRespuesta(int idPregunta)
     {
-        bool Correcta = false;
+       /*aca las repuestas las obtenes de la lista*/
+      
+       if (_preguntas.Count > 0)
+       {
+        return BD.ObtenerProximasRespuestas(idPregunta);
+       }
+       else {
+        return null;
+       }
+    
+      
+    }
+
+    public static bool VerificarRespuesta(int IdPregunta, int IdRespuesta, int IdDificultad )
+    {
+       
+       for (int i = 0; i<_preguntas.Count(); i++)
+       {
+        if (_preguntas[i].IdPregunta == IdPregunta)
+        {
+            _preguntas.RemoveAt(i);
+        }
+       }
 
        foreach(Respuesta resp in _respuestas){
-            if(resp.IdRespuesta == idRespuesta){
+            if(resp.IdRespuesta == IdRespuesta){
                 if (resp.Correcta == true){
+                    switch(IdDificultad){
 
-                    _puntajeActual += 5;
+                        case 1:
+                        _puntajeActual += 5;
+                        break;
+                        case 2:
+                        _puntajeActual += 10;
+                        break;
+                        case 3:
+                        _puntajeActual += 15;
+                        break;
+
+                    }
                     _cantidadPreguntasCorrectas++;
 
-                    return Correcta;
+                    return true;
                 }
             }
         }
+
+        Console.Writeline(PuntajeActual);
         
-        foreach(Pregunta preg in _preguntas){
-            if(preg.IdPregunta == idPregunta){
-                int indicePreguntaContestada = _preguntas.IndexOf(preg);
-                _preguntas.RemoveAt(indicePreguntaContestada);
-            }
-        }
-        return Correcta;
+        return false;
     }
-    
-    }
-
-   
-
-   
- 
-    
+}
 
 }
+
+    
+    
+
+
+    
+
 
 

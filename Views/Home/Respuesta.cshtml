@@ -1,0 +1,11 @@
+<center><h1>@ViewBag.Mensaje</h1>
+@if (@ViewBag.resultado == false)
+{
+    <h2>Respuesta Correcta: @ViewBag.opcionCorrecta</h2>
+}
+<form action='@Url.Action("Jugar","Home")' method="get" enctype="multipart/form-data">
+ <button type="submit" class="btn-primary">Siguiente Respuesta</button>
+</form>
+
+
+</center>

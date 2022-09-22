@@ -1,11 +1,11 @@
 
-
-
       
-    
         <form action='@Url.Action("Comenzar","Home")' method="get" enctype="multipart/form-data">
 
-        <input type="text" name="Username" value="" required/>
+        
+                <input type="text" placeholder="Nombre de usuario" autocomplete="off" name="username"required/>
+        
+        
         <h1 class="text-center bg-warning">CATEGORIA</h1>
             @foreach (Categoria item in @ViewBag.Categoria)
             {
@@ -13,6 +13,8 @@
                     
                     <li class="list-group-item border-warning">
                 <h2>
+
+            
                     <input type="radio"  class="form-check-input" name="IdCategoria" value="@item.IdCategoria" required />
                     <label  class="form-check-label"  >@item.Nombre</label>
                 </h2>
@@ -20,6 +22,8 @@
 
                 </ul>
             }
+            
+            
 
             <h1 class="text-center bg-dark text-light">DIFICULTAD</h1>
 

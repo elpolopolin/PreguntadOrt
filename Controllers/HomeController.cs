@@ -31,7 +31,17 @@ public class HomeController : Controller
         return View();
     }
 
+      public IActionResult tutorial()
+    {
+        return View();
+    }
+
     public IActionResult historia()
+    {
+        return View();
+    }
+
+     public IActionResult historia2()
     {
         return View();
     }
@@ -64,29 +74,56 @@ en ViewBag y retorna la view Juego.
 //public IActionResult Jugar(List <Pregunta> _preguntas)
 public IActionResult Jugar()
     {
-        ViewBag.preguntas=Juego.ObtenerProximaPregunta();
-       ViewBag.respuestas=Juego.ObtenerProximaRespuesta(ViewBag.preguntas);
+    
+        ViewBag.Username = Juego.username;
+        ViewBag.PuntajeActual = Juego.PuntajeActual;
+        ViewBag.RespuestasCorrectas = Juego.cantidadPreguntasCorrectas ;
 
-        if(ViewBag.preguntas != null)
+        if(Juego.ObtenerProximaPregunta() != null)
         {
-            return View("FIN");
-        }
-
-        
-            return View("Jugar");
-        
-    }
-
-
-    public IActionResult VerificarRespuesta(int idPregunta,int idRespuesta)
-    {
-        if(Juego.VerificarRespuesta(idPregunta,idRespuesta)==true)
-        {
-            ViewBag.Mensaje="Respuesta correcta";
+            ViewBag.Foto = Juego.ObtenerProximaPregunta().Foto;
+            ViewBag.Dificultad = Juego.ObtenerProximaPregunta().IdDificultad;
+            ViewBag.Enunciado = Juego.ObtenerProximaPregunta().Enunciado;
+           ViewBag.Respuestas = Juego.ObtenerProximaRespuesta(Juego.ObtenerProximaPregunta().IdPregunta);
+           ViewBag.IdPregunta = Juego.ObtenerProximaPregunta().IdPregunta;
+          
+            return View("Jugar");   
         }
         else
         {
+           // DateTime dia = DateTime.Now;
+           // ScoreBoard puntaje = new ScoreBoard(Juego.Username, Juego.PuntajeActual, dia);
+           // BD.IsertarScoreboard(puntaje);
+            return View("Fin");
+        }
+    }
+
+
+    public IActionResult VerificarRespuesta(int IdPregunta,int IdRespuesta, int IdDificultad)
+    {
+        string opcionCorrecta = "aaaa";
+        foreach(Respuesta item in BD.ObtenerProximasRespuestas(IdPregunta)){
+            if (item.Correcta == true)
+            {
+                
+                opcionCorrecta = item.Contenido;
+            }
+            
+        }
+
+        bool resultado = Juego.VerificarRespuesta(IdPregunta, IdRespuesta, IdDificultad);
+
+        if(resultado == true)
+        {
+            ViewBag.Resultado=true;
+            ViewBag.Mensaje = "Respuesta correcta";
+            
+        }
+        else
+        {
+            ViewBag.Resultado = false;
             ViewBag.Mensaje="Respuesta incorrecta";
+            ViewBag.opcionCorrecta = opcionCorrecta;
         }
         return View("Respuesta");
     }
